@@ -5,3 +5,4 @@ node_modules/
 allure-report/
 allure-results/
 playwright-report/
+.DS_Store
