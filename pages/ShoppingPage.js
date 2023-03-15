@@ -1,3 +1,5 @@
+const { OrdersPage } = require("./OrdersPage");
+
 class ShoppingPage{
 
     constructor (page){
@@ -37,7 +39,9 @@ class ShoppingPage{
     }
 
     async goToOrders(){
+        const ordersPage = new OrdersPage(this.page);
         await this.ordersBtn.click();
+        await ordersPage.goBackToCartBtn.waitFor();
     }
 
 }

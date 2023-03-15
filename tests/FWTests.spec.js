@@ -55,3 +55,17 @@ test("Placing order through API", async ({ page })=>{
     await shoppingPage.goToOrders();
     await expect(ordersPage.validateOrder(response.orders)).toBeTruthy();
 });
+
+test("Delete orders", async ({page})=>{
+    const shoppingPage = new ShoppingPage(page);
+    const ordersPage = new OrdersPage(page);
+    const apiUtils = new APIUtils(apiContext, loginPayload);
+    const token = await apiUtils.getToken();
+    await page.addInitScript(value => {
+        window.localStorage.setItem("token", value)
+    }, token);
+    await page.goto(data.baseURL);
+    await shoppingPage.goToOrders();
+    await ordersPage.deleteOrders();
+    await page.pause();
+});
